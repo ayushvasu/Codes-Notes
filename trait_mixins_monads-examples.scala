@@ -74,11 +74,14 @@ class StringWriter extends Writer{
 //extends means this trait can be only use with the writer
 //that this trait only be use on mixin a class which is writer
 trait UppercaseFilter extends Writer{
-	abstract override def write(msg:String) = super.write(msg.toUpperCase())
+	abstract override def write(msg:String) = 
+		super.write(msg.toUpperCase())
+			//super means object to my left
 }
 
 trait ReplaceFilter extends Writer{
-	abstract override def write(msg:String) = super.write(msg.replace("stupid","s********"))
+	abstract override def write(msg:String) = 
+		super.write(msg.replace("stupid","s********"))
 }
 
 def writeStuff(writer:Writer)={
