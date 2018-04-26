@@ -84,5 +84,3 @@ touch ${directoryName}/README.md
 fi
 
 echo ""
-echo "Project created. See the following URL for build.sbt examples:"
-echo "http://alvinalexander.com/scala/sbt-syntax-examples"
