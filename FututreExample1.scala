@@ -96,3 +96,10 @@ def prepareCappuccino(): Future[Cappuccino] = {
     espresso <- brew(ground, water)
   } yield combine(espresso, foam)
 }
+
+
+//You can create an ExecutionContext
+import java.util.concurrent.Executors
+import concurrent.ExecutionContext
+val executorService = Executors.newFixedThreadPool(4)
+val executionContext = ExecutionContext.fromExecutorService(executorService)
