@@ -3,6 +3,9 @@ basedir=$(dirname $0)
 BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 LCP_HOME="$(dirname "$BIN_DIR")"
 
+solc Deliverables.sol --bin --abi --optimize -o ./
+web3j solidity generate compiled_contract/Deliverables.sol:Deliverables.bin compiled_contract/Deliverables.sol:Deliverables.abi -o src/main/java -p com.yopiter
+solc --gas 
 
 #remove blank line 
 sed -i '/^$/d' file.txt
@@ -84,3 +87,44 @@ while true; do
     esac
     read -p "Continue?" yn
 done
+
+
+
+
+#--------SED----------
+
+#print partial test of a file
+sed -n 5,12p text.txt
+
+
+#remove a line from file
+sed 5d test.txt
+
+
+#remove the number of lines
+sed '5-12d' test.txt
+
+
+#remove the lines other than number specified
+sed '5-12!d' test.txt
+
+
+#replacing a word
+sed 's/ayush/vasu' test.txt
+
+
+#replacing the perticular occurrence of word
+sed 's/ayush/dev/5' test.txt
+
+
+#replaceing the word of perticuler line or line
+sed '9 s///' test.txt
+sed '9-12 s///' test.txt
+
+
+#adding blank line after every line 
+sed G test.txt
+
+#removing the comment
+sed -e 's/#.*//' test.txt
+sed -e 's/^$/d' test.txt
