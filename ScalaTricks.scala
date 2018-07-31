@@ -1,3 +1,7 @@
+val pf: PartialFunction[Int, Boolean] = { case i if i > 0 => i % 2 == 0}
+
+pf.lift //res1: Int => Option[Boolean] = <function1>
+
 def get:Any = "ayush"
 
 get.isInstanceOf[String] //true
