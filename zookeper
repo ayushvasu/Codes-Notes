@@ -1,0 +1,12 @@
+#zoo.cfg
+    #tickTime=2000
+    #dataDir=/home/impadmin/Zookeper/data
+    #clientPort=2181
+    #initLimit=5
+    #syncLimit=2
+
+bin/zkServer.sh start
+
+bin/zkCli.sh
+
+bin/zkServer.sh stop
