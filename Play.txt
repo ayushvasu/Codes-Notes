@@ -1,0 +1,80 @@
+# PLAY
+
+# HTTP routes configuraNon file
+
+GET				/							controllers.Application.index()
+
+GET				/products					controllers.Products.list()
+
+POST			/products					controllers.Products.add(p:	Product)
+
+GET				/product/:id				controllers.Products.details(id: Long)
+
+DELETE			/product/:id				controllers.Products.delete(id: Long)
+
+GET				/products.json				controllers.Products.listJSON()
+
+GET				/product/:id.json			controllers.Products.detailsJSON(id: Long)
+
+
+
+//Scala controller action method
+def	hello(name:	String) = Action {
+	Ok("Hello " + name)
+}
+
+
+# Templates
+
+1.) Templates include type-safe parameter declarations
+2.) Similar to the lightweight template syntax in Play 1.x
+3.) Templates are compiled into class files for run-time speed
+
+@(products:	List[Product])
+<ul>
+@for(product <- products) {
+ <li class="@product.type"> @product.name </li>
+} 
+</ul>
+
+
+
+//	Render	the	‘Products.list’	template	in	Java	code.
+Html html =	views.html.Products.list.render(products);
+//	e.g.	as	the	result	of	a	controller	action	method.
+public static Result list() {
+	final List<Product>	products = Products.list();
+	return ok(views.html.Products.list.render(products));
+}
+
+
+# Template syntax starts with @
+# Template parameter declaration
+
+@(products:	List[Product])
+
+
+@(products:	List[Product])
+@if(products.isEmpty)	{
+		<h1>No	products</h1>
+}	else	{
+		<h1>@items.size	products</h1> //Output the value of an expression
+}
+
+41
+
+
+Define a ‘tag’ - output a details page link
+@display(product:	models.Product)	=	{
+		<a	href="@routes.Products.details(product.id)">
+				@product.name
+		</a>
+}
+
+
+Use the ‘display’ tag
+<ul>
+@for(product <- products)	{
+    @display(product)
+}	
+</ul>
