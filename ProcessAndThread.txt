@@ -1,0 +1,52 @@
+Process and Thread
+
+----> process vs threadThe Process and Thread are the essentially associated. The process is an execution of a program whereas thread is an execution of a program driven by the environment of a process.
+
+----> Another major point which differentiates process and thread is that processes are isolated with each other whereas threads share memory or resources with each other.
+
+
+#PROCESS
+
+The process is the execution of a program and performs the relevant actions specified in a program, or it is an execution unit where a program runs. The operating system creates, schedules and terminates the processes for the use of the CPU. The other processes created by the main process are known as child process.
+
+A process operations are controlled with the help of PCB(Process control Block) can be considered as the brain of the process, which contains all the crucial information regarding to a process such as a process id, priority, state, PWS and contents CPU register.
+
+PCB is also a kernel-based data structure which uses the three kinds of functions which are scheduling, dispatching and context save.
+
+Scheduling – It is a method of selecting the sequence of the process in simple words chooses the process which has to be executed first in the CPU.
+Dispatching – It sets up an environment for the process to be executed.
+Context save – This function saves the information regarding to a process when it gets resumed or blocked.
+
+Properties of a Process:
+	- Creation of each process includes system calls for each process separately.
+	- A process is an isolated execution entity and does not share data and information.
+	- Processes use IPC (Inter-process communication) mechanism for communication which significantly increases the number of system calls.
+	- Process management consumes more system calls.
+	- Each process has its own stack and heap memory, instruction, data and memory map.
+
+
+#THREAD
+
+The thread is a program execution that uses process resources for accomplishing the task. All threads within a single program are logically contained within a process. The kernel allocates a stack and a thread control block (TCB) to each thread. The operating system saves only the stack pointer and CPU state at the time of switching between the threads of the same process.
+
+Threads are implemented in three different ways; these are kernel-level threads, user-level threads, hybrid threads. Threads can have three states running, ready and blocked; it only includes computational state not resource allocation and communication state which reduces the switching overhead. It enhances the concurrency (parallelism) hence speed also increases.
+
+Multithreading also comes with demerits, Multiple threads doesn’t create complexity, but the interaction between them does.
+
+A thread must have priority property when there are multiple threads are active. The time it gets for execution respective to other active threads in the same process is specified by the priority of the thread.
+
+Properties of a Thread:
+	- Only one system call can create more than one thread (Lightweight process).
+	- Threads share data and information.
+	- Threads shares instruction, global and heap regions but has its own individual stack and registers.
+	- Thread management consumes no or fewer system calls as the communication between threads can be achieved using shared memory.
+	- The isolation property of the process increases its overhead in terms of resource consumption.
+
+
+
+Key Differences Between Process and Thread
+	- All threads of a program are logically contained within a process.
+	- A process is heavy weighted, but a thread is light weighted.
+	- A program is an isolated execution unit whereas thread is not isolated and shares memory.
+	- A thread cannot have an individual existence; it is attached to a process. On the other hand, a process can exist individually.
+	- At the time of expiration of a thread, its associated stack could be recovered as every thread has its own stack. In contrast, if a process dies, all threads die including the process.
