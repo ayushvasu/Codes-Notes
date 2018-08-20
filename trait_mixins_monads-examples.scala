@@ -9,6 +9,15 @@ class Util {
   
 }
 
+ new Util.profile{
+ try {
+ 	123 * 123 * 123
+ 	}catch{
+ 	case e => println(e.getMessage)
+     }
+ }
+
+
 
 
 //Trait and Mixins
