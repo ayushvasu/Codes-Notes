@@ -1,6 +1,6 @@
 Process and Thread
 
-----> process vs threadThe Process and Thread are the essentially associated. The process is an execution of a program whereas thread is an execution of a program driven by the environment of a process.
+----> Process and Thread are the essentially associated. The process is an execution of a program whereas thread is an execution of a program driven by the environment of a process.
 
 ----> Another major point which differentiates process and thread is that processes are isolated with each other whereas threads share memory or resources with each other.
 
