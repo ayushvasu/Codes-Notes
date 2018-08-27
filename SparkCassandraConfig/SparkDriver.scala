@@ -1,5 +1,3 @@
-package com.glassbeam.s_c2r
-
 import org.slf4j.LoggerFactory
 
 import org.apache.spark.{SparkConf, SparkContext}
