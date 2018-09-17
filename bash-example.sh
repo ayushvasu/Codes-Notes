@@ -1,3 +1,7 @@
+#network usage
+bmon
+sudo iftop -i enp3s0 / eth0
+
 
 basedir=$(dirname $0)
 BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -64,6 +68,10 @@ sort -nk1 -u numbers.txt number2.txt
 #-------
 grep -v "ayush" filename
 
+
+#-------------------
+find . -type f ! -name '*.g4' -delete
+
 #----
 for i in {01..09} {20..22}; do ssh solr-$i du -sh ~/solr/data/ ; echo "SOLR-$i";echo ""; done
 
@@ -109,8 +117,8 @@ sed '5-12d' test.txt
 sed '5-12!d' test.txt
 
 
-#replacing a word
-sed 's/ayush/vasu' test.txt
+#replacing a word {-i is for in-place}
+sed -i 's/ayush/vasu/' test.txt 
 
 
 #replacing the perticular occurrence of word
@@ -128,3 +136,8 @@ sed G test.txt
 #removing the comment
 sed -e 's/#.*//' test.txt
 sed -e 's/^$/d' test.txt
+
+
+#Remove Special Char (ASCII to utf-8
+file /home/impadmin/TPC-DS/data/customer_1_2.dat
+iconv -f ASCII -t utf-8 /home/impadmin/TPC-DS/data/customer_1_2.dat > /home/impadmin/TPC-DS/data/customer_1_2_new.dat
