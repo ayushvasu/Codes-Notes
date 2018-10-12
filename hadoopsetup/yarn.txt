@@ -1,0 +1,51 @@
+#YARN
+
+Yet another resource negotiator
+
+in 1.x HDFS and MapReduce
+
+Hadoop Yarn Resource management
+
+It is a layer that seprates the resource management layer and processing Layer
+MapReduce2 moves resource management (like infrastructure to monitor node allocate the resource and schedule jobs) into YARN
+
+MR1 
+JobTracker is a master daemon
+Responsible to assign and track task execution progress
+TaskTracker are the slave daemon
+They run on system where data node reside
+Responsible to spawn a child jvm to execute Map Reduce and intermediate Task
+
+Job Tracker now splits into two 
+
+-Resources Manager -> manages the resource allocation in the cluster
+-Application Master -> manages resource needs of individual application
+
+Node manager is a generalized task tracker
+A container executes as application specific process
+
+
+Client - To submit the MR job
+resources Manager - To manage the use of resource across the cluster
+Container - Name given to a package os resources including RAM CPU and Network HDD
+Node Manager - to oversee the container running on the cluster nodes
+Application Master - which negotiates with the resource manager for resource and runs the application specific process in those cluster
+
+Resource Manager 
+Two Components scheduler and application manager
+it is a global resource scheduler
+Manages and allocates cluster resources
+
+Application Master
+Manages application life cycle and task scheduling
+interacts with Resource manager and node manager
+Application is a job submitted to the freamework
+
+Node Manager
+Manages single node resource allocation
+Pre-node agent
+
+Container Slot
+Basic unit of allocation
+Ex: container X= 2 GB, 1 CPU
+Fine grained resource
