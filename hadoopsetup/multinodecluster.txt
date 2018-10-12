@@ -1,0 +1,147 @@
+#Hadoop Multi node cluster
+
+HDFS ------> Storage
+YARN ------> Processing
+
+
+	HDFS			|			YARN
+--------------------------------------------------
+	Namenode ---> master <---- Resource Manager
+Secondary NameNode  |
+	Datanode ---> Slave  <---- Node Manager
+____________________|____________________________
+
+
+Storage based processing
+
+Yet another resource negotiator (map reduce 2)
+
+Secondary Namenode <--------->  Namenode
+                               ^        ^
+							Datanode  Datanode
+
+
+
+Stand by node --> automatic failover
+
+Configuration file 
+
+hadoop-env.sh   ----->Enviroment variable that are used in the scripts to run Hadoop
+Yarn-env.sh
+
+core-site.xml  ------> Configuration setting for hadoop core such as I/O setting that are common to HDFS and MapReduce
+
+hdfs-site.xml   -----> config setting for HDFS deamons and the namenode the secondary namenode and the data nodes
+
+mapred-site.xml -----> config setting for MapReduce application
+
+yarn-site.xml  -------> config setting for resource manager and node manager
+
+slaves   ---> A list of machines that each run a datanode and a node manager
+
+
+
+Step Creating a hadoop multi node cluster
+
+> Install Java
+
+> Specify the IP address of each system followed by the host name in hosts file inside the /etc folder of each system
+
+> config hadoop configuration files 
+
+> Edit slaves file on master node
+
+> Format namenode and start all hadoop services
+
+> check live nodes on Hadoop namenode UI
+
+
+
+Maaster Demon 
+		HDFS - namenode
+		Yarn - Resource manager
+
+Slave demon 
+		HDFS - datanode
+		Yarn - nodemanager
+
+ping and nslookup should working fine
+
+
+
+step 1 -> download hadoop
+step 2 -> untar the file
+
+step 3 -> create the soft link (ln -s hadoop-folder hadoop)
+
+step 4 -> goto hadoop/etc/hadoop folder there are all the config files
+
+(core-site.xml	hdfs-site.xml	mapred-site.xml	yarn-site.xml)
+
+core-site.xml
+
+<property>
+	<name>fs.defaultFS</name>
+	<value>hdfs://192.168.56.101:8020</value>
+</property>
+
+-----------------------------------------
+hdfs-site.xml
+
+<property>
+	<name>dfs.namenode.name.dir</name>
+	<value>file://home/ayush/hadoopstore/namenode</value>  <!-- for metadata-->
+</property>
+<property>
+	<name>dfs.datanaode.data.dir</name>
+	<value>file://home/ayush/hadoopstore/datanode</value>
+</property>
+
+* create these dir
+* and give permission chomod 755
+
+-----------------------------------------
+mapred-site.xml
+
+<property>
+	<name>mapreduce.framework.name</name>
+	<value>yarn</value>
+</property>
+
+-----------------------------------------
+
+yarn-site.xml
+
+-----------------------------------------
+
+edit slave file in master
+
+vi slaves
+	put all the ips of slaves
+
+-----------------------------------------
+
+
+On slaves node
+
+	scp all the config file to slaves config folder (hadoop/etc/hadoop/)
+	create folder for metadata store mention in hdfs-site.xml
+-----------------------------------------
+
+
+Format name node 
+
+	hdfs namenode -format
+
+start the instances
+
+	start-dfs.sh
+
+
+	> hadoop-demon.sh start datanode
+
+
+In master start demon
+
+	start-yarn.sh
+
