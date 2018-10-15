@@ -141,3 +141,36 @@ sed -e 's/^$/d' test.txt
 #Remove Special Char (ASCII to utf-8
 file /home/impadmin/TPC-DS/data/customer_1_2.dat
 iconv -f ASCII -t utf-8 /home/impadmin/TPC-DS/data/customer_1_2.dat > /home/impadmin/TPC-DS/data/customer_1_2_new.dat
+
+#NETSTAT
+
+#Listing all the LISTENING Ports of TCP and UDP connections
+netstat -a | more
+
+
+#Listing TCP Ports connections
+netstat -at
+
+
+#Listing UDP Ports connections
+netstat -au
+
+#Listing all LISTENING Connections
+netstat -l
+
+#Listing all TCP Listening Ports
+netstat -lt
+
+# for udp
+netstat -lu
+
+#Showing Statistics by Protocol
+netstat -s
+
+#Displaying Service name with PID
+netstat -tp
+
+#Displaying Kernel IP routing
+netstat -r
+
+sudo netstat -tulpn | find ":3306"
