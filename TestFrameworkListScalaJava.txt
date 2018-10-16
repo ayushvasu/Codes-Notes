@@ -1,3 +1,9 @@
+JUnit
+ScalaTest
+Mockito
+
 https://www.tutorialspoint.com/mockito/
 
 https://alvinalexander.com/scala/scalatest-tutorials-from-scala-cookbook
+
+https://www.tutorialspoint.com/junit/index.htm
