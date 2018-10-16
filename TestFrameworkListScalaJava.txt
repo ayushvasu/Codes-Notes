@@ -1,0 +1,3 @@
+https://www.tutorialspoint.com/mockito/
+
+https://alvinalexander.com/scala/scalatest-tutorials-from-scala-cookbook
