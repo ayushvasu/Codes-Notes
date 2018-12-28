@@ -5,7 +5,7 @@ sudo iftop -i enp3s0 / eth0
 
 basedir=$(dirname $0)
 BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-LCP_HOME="$(dirname "$BIN_DIR")"
+APP_HOME="$(dirname "$BIN_DIR")"
 
 solc Deliverables.sol --bin --abi --optimize -o ./
 web3j solidity generate compiled_contract/Deliverables.sol:Deliverables.bin compiled_contract/Deliverables.sol:Deliverables.abi -o src/main/java -p com.yopiter
@@ -174,3 +174,29 @@ netstat -tp
 netstat -r
 
 sudo netstat -tulpn | find ":3306"
+
+
+#Fierwall Setting
+
+sudo apt-get install ufw
+
+sudo ufw status
+
+sudo ufw allow <port>/<optional: protocol>
+
+sudo ufw deny <port>/<optional: protocol>
+
+sudo ufw deny 3306
+
+sudo ufw deny mysql
+
+sudo ufw allow from 192.168.0.1 to any port 22
+
+#Let's also allow access to the MySQL port.
+
+sudo ufw allow from 192.168.0.1 to any port 3306
+
+
+sudo apt-get install iptables
+
+sudo iptables -t <table-name> -L
