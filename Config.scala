@@ -1,5 +1,6 @@
   /*
 	#application.conf
+  application{
   
   metadata {
     driver="org.postgresql.Driver"
@@ -14,6 +15,8 @@
     retention-Period = 24 hours
     //Sources to cached - LOGICAL, S3, HDFS, JDBC
     sources = ["LOGICAL","S3"]
+  }
+  
   }
   
   */
