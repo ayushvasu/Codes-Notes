@@ -1,0 +1,32 @@
+Garbage Collection 
+
+"stop-the-world" 
+
+Stop-the-world will occur no matter which GC algorithm you choose. 
+Stop-the-world means that the JVM is stopping the application from running to execute a GC. 
+When stop-the-world occurs, every thread except for the threads needed for the GC will stop their tasks. 
+The interrupted tasks will resume only after the GC task has completed. 
+GC tuning often means reducing this stop-the-world time.
+
+Java does not explicitly specify a memory and remove it in the program code. Some people sets the relevant object to null or use System.gc() method to remove the memory explicitly. Setting it to null is not a big deal, but calling System.gc() method will affect the system performance drastically, and must not be carried out. 
+
+Garbage collection work based on these two point 
+* Most objects soon become unreachable.
+* References from old objects to young objects only exist in small numbers.
+
+These hypotheses are called the weak generational hypothesis. So in order to preserve the strengths of this hypothesis, it is physically divided into two - young generation and old generation - in HotSpot VM.
+
+Young generation: Most of the newly created objects are located here. Since most objects soon become unreachable, many objects are created in the young generation, then disappear. When objects disappear from this area, we say a "minor GC" has occurred. 
+
+Old generation: The objects that did not become unreachable and survived from the young generation are copied here. It is generally larger than the young generation. As it is bigger in size, the GC occurs less frequently than in the young generation. When objects disappear from the old generation, we say a "major GC" (or a "full GC") has occurred. 
+
+
+The permanent generation from the chart above is also called the "method area," and it stores classes or interned character strings. So, this area is definitely not for objects that survived from the old generation to stay permanently. A GC may occur in this area. The GC that took place here is still counted as a major GC. 
+
+Some people may wonder:
+
+What if an object in the old generation need to reference an object in the young generation?
+
+To handle these cases, there is something called the a "card table" in the old generation, which is a 512 byte chunk. Whenever an object in the old generation references an object in the young generation, it is recorded in this table. When a GC is executed for the young generation, only this card table is searched to determine whether or not it is subject for GC, instead of checking the reference of all the objects in the old generation. This card table is managed with write barrier. This write barrier is a device that allows a faster performance for minor GC. Though a bit of overhead occurs because of this, the overall GC time is reduced. 
+
+
