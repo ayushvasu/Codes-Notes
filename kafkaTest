@@ -8,5 +8,26 @@ val kafkaOutput = fileStreamDf.writeStream.format("kafka").option("kafka.bootstr
 
 kafkaOutput.awaitTermination()
 
+===========================New CODE ================================
+import org.apache.spark.sql.functions._
+
+val fileStreamDf = spark.read.parquet("people.parquet")
+
+val value_fields = df.columns.filter(_ != "Column_1") 
+
+df.withColumnRenamed("Column_1", "key")
+.withColumn("value", to_json(struct(value_fields.map(col(_)):_*))) 
+.select("key", "value")
+.write()
+.format("kafka")
+.option("kafka.bootstrap.servers", "host1:port1,host2:port2")
+.save()
+
+/*
+
+import org.apache.spark.sql.functions.to_json
+df.select(to_json(struct($"c1", $"c2", $"c3")))
+
+*/
 //lib ->  "org.apache.kafka" % "kafka-clients" % "2.3.0"
 //lib -> "org.apache.spark" %% "spark-sql-kafka-0-10" % "2.3.0" 
