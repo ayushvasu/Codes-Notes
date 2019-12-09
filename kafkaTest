@@ -1,0 +1,12 @@
+
+case class(value: Int)
+
+val fileStreamDf = spark.read.parquet("people.parquet").as[Data]
+
+val kafkaOutput = fileStreamDf.writeStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092").
+                  option("topic", "test").option("checkpointLocation", "/tmp/checkpoints").start()
+
+kafkaOutput.awaitTermination()
+
+//lib ->  "org.apache.kafka" % "kafka-clients" % "2.3.0"
+//lib -> "org.apache.spark" %% "spark-sql-kafka-0-10" % "2.3.0" 
