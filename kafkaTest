@@ -11,7 +11,7 @@ kafkaOutput.awaitTermination()
 ===========================New CODE ================================
 import org.apache.spark.sql.functions._
 
-val fileStreamDf = spark.read.parquet("people.parquet")
+val fileStreamDf = spark.readStream.parquet("people.parquet")
 
 val value_fields = df.columns.filter(_ != "Column_1") 
 
