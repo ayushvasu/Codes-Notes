@@ -1,3 +1,5 @@
+package org.pathirage.calcite.tutorial.physicalPlanner;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -20,7 +22,6 @@ public class Check {
     for(int i = 0; i < times; i++){
       String line = sc.next();
       int intValue= sc.nextInt();
-      System.out.println(line+"  "+intValue);
       dataList.add(new DataValue(sobj.parse(line), intValue));
       //sm.put(sobj.parse(line), intValue);
     }
