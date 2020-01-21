@@ -1,5 +1,3 @@
-package org.pathirage.calcite.tutorial.physicalPlanner;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
