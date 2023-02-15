@@ -3567,9 +3567,6 @@ fi
 #export LSCOLORS=ExFxBxDxCxegedabagacad
 #alias ls='ls -GFh'
 
-#export HPE_ARTIFACTORY_USERNAME=ayush-vasu@hpe.com
-#export HPE_ARTIFACTORY_PASSWORD=AKCp8k84yB9trjTcFSExVtMxVBkPnjxHTgAUFMjL35xtUb5GZHM9PjijMo9dTQfFoKp1QW515
-
 #if [ -f ~/.git-completion.bash ]; then
 #  . ~/.git-completion.bash
 #fi
